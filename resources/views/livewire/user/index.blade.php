@@ -10,6 +10,7 @@
     <div class="flex justify-end mb-8">
       <button
         type="button"
+        onclick="Livewire.emit('openModal', 'user.create')"
         class="
           px-4
           py-2
