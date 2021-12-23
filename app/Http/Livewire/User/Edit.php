@@ -8,12 +8,13 @@ use App\Models\User;
 class Edit extends ModalComponent
 {
     public User $user;
+    public $password;
 
     protected $rules = [
         'user.id' => 'required',
         'user.name' => 'required',
         'user.email' => 'required|email',
-        'user.password' => 'required|confirmed',
+        'password' => 'required',
     ];
 
     public function mount($id) {
@@ -32,6 +33,7 @@ class Edit extends ModalComponent
 
     public function submit() {
         $this->validate();
+        $this->user->password = $this->password;
         $this->user->save();
         $this->emit('reload');
         $this->closeModal();
