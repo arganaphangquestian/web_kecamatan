@@ -16,6 +16,6 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.activity.index', ['activities' => Activity::paginate(10)]);
+        return view('livewire.activity.index', ['activities' => Activity::orderBy('id', 'desc')->paginate(10)]);
     }
 }

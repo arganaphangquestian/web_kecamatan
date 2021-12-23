@@ -7,10 +7,20 @@ use App\Models\User;
 
 class Create extends ModalComponent
 {
-    public User $user;
+    public $user;
+
+    protected $rules = [
+        'user.name' => 'required',
+        'user.email' => 'required|email',
+        'user.password' => 'required',
+    ];
 
     public function mount() {
-        $this->user = new User();
+        $this->user = [
+            'name' => '',
+            'email' => '',
+            'password' => '',
+        ];
     }
 
     public function render()
@@ -18,8 +28,18 @@ class Create extends ModalComponent
         return view('livewire.user.create');
     }
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function submit() {
-        $this->user->save();
+        $this->validate();
+        User::create([
+            'name' => $this->user['name'],
+            'email' => $this->user['email'],
+            'password' => $this->user['password'],
+        ]);
         $this->emit('reload');
         $this->closeModal();
     }
