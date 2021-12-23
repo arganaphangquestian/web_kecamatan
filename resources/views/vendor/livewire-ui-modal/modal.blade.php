@@ -103,6 +103,7 @@
               x-show.immediate="activeComponent == '{{ $id }}'"
               x-ref="{{ $id }}"
               wire:key="{{ $id }}"
+              class="h-full"
             >
               @livewire($component['name'], $component['attributes'], key($id))
             </div>
