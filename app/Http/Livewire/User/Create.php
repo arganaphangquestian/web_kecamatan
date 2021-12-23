@@ -20,5 +20,7 @@ class Create extends ModalComponent
 
     public function submit() {
         $this->user->save();
+        $this->emit('reload');
+        $this->closeModal();
     }
 }

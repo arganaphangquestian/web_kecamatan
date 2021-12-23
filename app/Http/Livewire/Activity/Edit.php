@@ -20,5 +20,7 @@ class Edit extends ModalComponent
 
     public function submit() {
         $this->activity->save();
+        $this->emit('reload');
+        $this->closeModal();
     }
 }

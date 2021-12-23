@@ -10,6 +10,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $listeners = ['reload' => '$refresh'];
+
     public $search = "";
 
     public function render()

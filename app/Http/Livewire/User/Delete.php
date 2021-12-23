@@ -20,5 +20,7 @@ class Delete extends ModalComponent
 
     public function submit() {
         $this->user->delete();
+        $this->emit('reload');
+        $this->closeModal();
     }
 }

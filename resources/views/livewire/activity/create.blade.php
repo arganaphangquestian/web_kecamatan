@@ -1,3 +1,4 @@
-<div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
-</div>
+<x-modal>
+  <x-slot name="title">Tambah Pengadaan</x-slot>
+  <x-slot name="content">Body</x-slot>
+</x-modal>

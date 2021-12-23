@@ -17,11 +17,11 @@
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('activity') }}" :active="request()->routeIs('activity')">
-                        {{ __('Activity') }}
+                        {{ __('Pengadaan') }}
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('user') }}" :active="request()->routeIs('user')">
-                        {{ __('User') }}
+                        {{ __('Staff') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -150,10 +150,10 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('activity') }}" :active="request()->routeIs('activity')">
-                {{ __('Activity') }}
+                {{ __('Pengadaan') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('user') }}" :active="request()->routeIs('user')">
-                {{ __('User') }}
+                {{ __('Staff') }}
             </x-jet-responsive-nav-link>
         </div>
 

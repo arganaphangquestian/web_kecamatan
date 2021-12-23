@@ -1,3 +1,4 @@
-<div>
-    {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
-</div>
+<x-modal>
+  <x-slot name="title">Ubah Staff</x-slot>
+  <x-slot name="content">Body</x-slot>
+</x-modal>
