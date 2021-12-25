@@ -9,14 +9,19 @@ class Activity extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'amount', 'village', 'activity_type', 'volume', 'founding', 'start', 'attachment'];
+    protected $fillable = ['name', 'amount', 'village', 'activity_type_id', 'volume', 'founding', 'start', 'attachment'];
 
     public function getActivityTypeColorAttribute() {
         return [
-            'Jalan' => 'green',
-            'Jembatan' => 'red',
-            'Bangunan' => 'purple',
-            'Saluran Air' => 'blue',
-        ][$this->activity_type] ?? 'gray';
+            '0' => 'blue',
+            '1' => 'green',
+            '2' => 'red',
+            '3' => 'purple',
+        ][$this->activity_type_id] ?? 'gray';
+    }
+
+    public function activity_type()
+    {
+        return $this->belongsTo(ActivityType::class);
     }
 }

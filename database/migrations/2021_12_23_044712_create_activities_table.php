@@ -18,11 +18,13 @@ class CreateActivitiesTable extends Migration
             $table->string('name');
             $table->double('amount');
             $table->string('village');
-            $table->enum('activity_type', ['Jalan', 'Jembatan', 'Saluran Air', 'Bangunan']);
             $table->double('volume');
             $table->string('founding');
             $table->year('start');
             $table->text('attachment')->nullable();
+            $table->unsignedBigInteger('activity_type_id');
+
+            $table->foreign('activity_type_id')->references('id')->on('activity_types');
             $table->timestamps();
             $table->softDeletes();
         });

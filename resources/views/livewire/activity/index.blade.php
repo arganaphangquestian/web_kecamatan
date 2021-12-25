@@ -177,7 +177,7 @@
                   text-{{$activity->activity_type_color}}-800
                 "
               >
-                {{$activity->activity_type}}
+                {{$activity->activity_type->name}}
               </span>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">

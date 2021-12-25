@@ -19,6 +19,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@mail.com',
             'password' => 'password',
         ]);
-        User::factory()->count(1000)->create();
+        User::factory()->count(100)->create();
     }
 }
