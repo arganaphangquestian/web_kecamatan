@@ -7,15 +7,45 @@
 
   <div>
     <!-- Header -->
-    <div class="flex justify-between mb-8">
-      <div class="flex-1">
+    <div class="flex flex-wrap md:flex-row justify-between mb-8">
+      <div class="flex-1 mb-4 md:md-0 flex gap-4 flex-wrap">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Cari"
+          wire:model="search"
           class="rounded border-2 border-gray-200 ring-0 px-4 py-2"
         />
+        <input
+          type="text"
+          placeholder="Desa"
+          wire:model="village"
+          class="rounded border-2 border-gray-200 ring-0 px-4 py-2"
+        />
+        <select wire:model="year"
+          class="appearance-none w-48 rounded border-2 border-gray-200 ring-0 px-4 py-2"
+        >
+          <option value="">Pilih Tahun</option>
+          @for ($year = date('Y') - 20; $year < date('Y') + 100; $year++)
+            <option value="{{$year}}">{{$year}}</option>
+         @endfor
+        </select>
       </div>
       <div>
+        <button
+          type="button"
+          class="
+            px-4
+            py-2
+            bg-blue-100
+            hover:bg-blue-200 hover:text-blue-500
+            transition
+            text-blue-400
+            rounded-md
+          "
+          onclick="Livewire.emit('openModal', 'activity.import', {{ json_encode(['type' => $type]) }})"
+        >
+          Import Pengadaan
+        </button>
         <button
           type="button"
           class="
@@ -27,7 +57,7 @@
             text-green-400
             rounded-md
           "
-          onclick="Livewire.emit('openModal', 'activity.create')"
+          onclick="Livewire.emit('openModal', 'activity.create', {{ json_encode(['type' => $type]) }})"
         >
           Tambah Pengadaan
         </button>
@@ -211,7 +241,7 @@
                   shadow
                   rounded-full
                 "
-                src="{{$activity->attachment ?? 'https://ui-avatars.com/api/?name='.$activity->name.'&color=7F9CF5&background=EBF4FF'}}"
+                src="{{$activity->attachment ? asset('/storage/' . $activity->attachment) : 'https://ui-avatars.com/api/?name='.$activity->name.'&color=7F9CF5&background=EBF4FF'}}"
                 alt="Kegiatan {{$activity->name}}"
               />
             </td>

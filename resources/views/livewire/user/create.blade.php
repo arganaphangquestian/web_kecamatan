@@ -3,7 +3,7 @@
   <x-slot name="content">
     <div class="flex flex-col">
       <label class="flex flex-col mb-4">
-        <span class="text-gray-600 text-sm mb-1">Name</span>
+        <span class="text-gray-600 text-sm mb-1">Nama Staff</span>
         <input type="text" placeholder="John Doe" class="bg-transparent border-gray-200 rounded-md" wire:model="user.name"/>
       </label>
       <label class="flex flex-col mb-4">
