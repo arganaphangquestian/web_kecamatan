@@ -6,6 +6,8 @@ use LivewireUI\Modal\ModalComponent;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ActivitiesImport;
+use Illuminate\Support\Facades\Storage;
+
 
 class Import extends ModalComponent
 {
@@ -31,5 +33,9 @@ class Import extends ModalComponent
         $data = Excel::import(new ActivitiesImport($this->type), 'public/'.$path);
         $this->emit('reload');
         $this->closeModal();
+    }
+
+    public function download() {
+        return Storage::disk('templates')->download('pengadaan.csv');
     }
 }
