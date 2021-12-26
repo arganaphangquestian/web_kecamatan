@@ -28,11 +28,8 @@ class Import extends ModalComponent
             'csv' => 'file',
         ]);
         $path = $this->csv->store('csv', 'public');
-        // dd($path);
-        try {
-            $data = Excel::import(new ActivitiesImport($this->type), 'public/'.$path);
-        } catch(Throwable $e) {
-            dd($e);
-        }
+        $data = Excel::import(new ActivitiesImport($this->type), 'public/'.$path);
+        $this->emit('reload');
+        $this->closeModal();
     }
 }

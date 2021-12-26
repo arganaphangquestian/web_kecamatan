@@ -35,7 +35,7 @@ class ActivitiesImport implements ToModel, WithStartRow, WithCustomCsvSettings
             'name' => $row[0],
             'amount' => $row[1],
             'village' => $row[2],
-            'activity_type_id' => ActivityType::where('slug', "=", $this->type),
+            'activity_type_id' => ActivityType::where('slug', "=", $this->type)->first()->id,
             'volume' => $row[3],
             'founding' => $row[4],
             'start' => $row[5],
