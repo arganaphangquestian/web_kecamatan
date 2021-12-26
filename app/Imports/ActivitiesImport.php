@@ -25,7 +25,7 @@ class ActivitiesImport implements ToModel, WithStartRow, WithCustomCsvSettings
     public function getCsvSettings(): array
     {
         return [
-            'delimiter' => ';'
+            'delimiter' => ','
         ];
     }
 

@@ -27,9 +27,10 @@ class Import extends ModalComponent
         $this->validate([
             'csv' => 'file',
         ]);
-        $path = $this->csv->store('public/csv');
+        $path = $this->csv->store('csv', 'public');
+        // dd($path);
         try {
-            $data = Excel::import(new ActivitiesImport($this->type), $path);
+            $data = Excel::import(new ActivitiesImport($this->type), 'public/'.$path);
         } catch(Throwable $e) {
             dd($e);
         }
