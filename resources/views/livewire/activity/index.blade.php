@@ -51,6 +51,21 @@
           class="
             px-4
             py-2
+            bg-pink-100
+            hover:bg-pink-200 hover:text-pink-500
+            transition
+            text-pink-400
+            rounded-md
+          "
+          wire:click="export"
+        >
+          Export Pengadaan
+        </button>
+        <button
+          type="button"
+          class="
+            px-4
+            py-2
             bg-green-100
             hover:bg-green-200 hover:text-green-500
             transition

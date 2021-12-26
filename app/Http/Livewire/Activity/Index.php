@@ -7,6 +7,8 @@ use Livewire\WithPagination;
 use App\Models\Activity;
 use App\Models\ActivityType;
 use Illuminate\Support\Collection;
+use App\Exports\ActivitiesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -36,6 +38,10 @@ class Index extends Component
             $data->where('village', 'like', '%' . $this->village . '%');
         }
         return view('livewire.activity.index', ['activities' => $data->orderBy('id', 'desc')->paginate(10)]);
+    }
+
+    public function export() {
+        return Excel::download(new ActivitiesExport($this->type, $this->search, $this->year, $this->village), 'Activities-'.$this->type.'-'.date("Y-m-d H:i:s").'.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
 }
