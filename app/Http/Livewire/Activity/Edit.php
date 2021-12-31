@@ -33,6 +33,9 @@ class Edit extends ModalComponent
     }
 
     public function submit() {
+        if($this->attachment) {
+            $this->activity['attachment'] = $this->attachment->store('activity', 'public');
+        }
         $this->activity->save();
         $this->emit('reload');
         $this->closeModal();

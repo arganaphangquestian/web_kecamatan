@@ -32,8 +32,14 @@
         <input type="number" placeholder="Tahun" class="bg-transparent border-gray-200 rounded-md" wire:model="activity.start"/>
       </label>
       <label class="w-full rounded-md border-2 border-dashed p-8 mb-4 flex flex-col justify-center items-center">
+        @if($attachment)
+        <img src="{{$attachment->temporaryUrl()}}" alt="Aktifitas Pengadaan">
+        @elseif($activity->attachment)
+        <img src="{{asset('/storage/' . $activity->attachment)}}" alt="Aktifitas Pengadaan">
+        @else
         <span class="text-gray-600 text-sm mb-1">Foto Pengadaan</span>
-        <input type="file" placeholder="attachment" class="hidden" wire:model="attachment"/>
+        @endif
+        <input id="attachment" type="file" placeholder="attachment" class="hidden" wire:model="attachment"/>
       </label>
       <div class="flex flex-col gap-4">
         <button type="submit" class="px-4 py-2 rounded-md bg-green-200 hover:bg-green-300 text-green-800">Update</button>
