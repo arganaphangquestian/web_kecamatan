@@ -21,6 +21,8 @@ class CreateActivitiesTable extends Migration
             $table->string('founding');
             $table->year('start');
             $table->text('attachment')->nullable();
+            $table->double('lat')->nullable();
+            $table->double('lng')->nullable();
             $table->unsignedBigInteger('activity_type_id');
             $table->unsignedBigInteger('village_id');
 
