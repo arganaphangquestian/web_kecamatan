@@ -16,6 +16,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.user.index', ['users' => User::orderBy('id', 'desc')->paginate(10)]);
+        $data = User::where('name', 'like', '%' . $this->search . '%');
+        return view('livewire.user.index', ['users' =>  $data->orderBy('id', 'desc')->paginate(10)]);
     }
 }

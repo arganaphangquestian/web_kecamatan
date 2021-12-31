@@ -12,6 +12,7 @@
         <input
           type="text"
           placeholder="Search"
+          wire:model="search"
           class="rounded border-2 border-gray-200 ring-0 px-4 py-2"
         />
       </div>
