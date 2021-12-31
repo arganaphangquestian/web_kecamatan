@@ -12,7 +12,12 @@
       </label>
       <label class="flex flex-col mb-4">
         <span class="text-gray-600 text-sm mb-1">Desa</span>
-        <input type="text" placeholder="Desa" class="bg-transparent border-gray-200 rounded-md" wire:model="activity.village"/>
+        <select type="text" placeholder="Desa" class="bg-transparent border-gray-200 rounded-md" wire:model="activity.village_id">
+          <option>Pilih Desa</option>
+          @foreach ($villages as $village)
+          <option value="{{$village->id}}">{{$village->name}}</option>
+          @endforeach
+        </select>
       </label>
       <label class="flex flex-col mb-4">
         <span class="text-gray-600 text-sm mb-1">Volume</span>

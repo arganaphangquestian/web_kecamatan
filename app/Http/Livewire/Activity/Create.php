@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Activity;
 
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Activity;
+use App\Models\Village;
 use App\Models\ActivityType;
 use Livewire\WithFileUploads;
 
@@ -16,7 +17,7 @@ class Create extends ModalComponent
     protected $rules = [
         'activity.name' => 'required',
         'activity.amount' => 'required|numeric',
-        'activity.village' => 'required',
+        'activity.village_id' => 'required',
         'activity.volume' => 'required|numeric',
         'activity.activity_type_id' => 'required|numeric',
         'activity.founding' => 'required',
@@ -30,7 +31,7 @@ class Create extends ModalComponent
 
     public function render()
     {
-        return view('livewire.activity.create');
+        return view('livewire.activity.create', ['villages' => Village::all()]);
     }
 
     public function submit() {

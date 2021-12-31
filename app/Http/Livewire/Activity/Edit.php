@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Activity;
 
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Activity;
+use App\Models\Village;
 use Livewire\WithFileUploads;
 
 class Edit extends ModalComponent
@@ -15,7 +16,7 @@ class Edit extends ModalComponent
     protected $rules = [
         'activity.name' => 'required',
         'activity.amount' => 'required|numeric',
-        'activity.village' => 'required',
+        'activity.village_id' => 'required',
         'activity.volume' => 'required|numeric',
         'activity.activity_type_id' => 'required|numeric',
         'activity.founding' => 'required',
@@ -28,14 +29,10 @@ class Edit extends ModalComponent
 
     public function render()
     {
-        return view('livewire.activity.create');
+        return view('livewire.activity.edit', ['villages' => Village::all()]);
     }
 
     public function submit() {
-        $this->validate([
-            'attachment' => 'file',
-        ]);
-        $this->activity['attachment'] = $this->attachment->store('activity', 'public');
         $this->activity->save();
         $this->emit('reload');
         $this->closeModal();

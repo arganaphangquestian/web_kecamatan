@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Activity;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Activity;
+use App\Models\Village;
 use App\Models\ActivityType;
 use Illuminate\Support\Collection;
 use App\Exports\ActivitiesExport;
@@ -35,9 +36,9 @@ class Index extends Component
             $data->where('start', '=', $this->year);
         }
         if($this->village) {
-            $data->where('village', 'like', '%' . $this->village . '%');
+            $data->where('village_id', '=', $this->village);
         }
-        return view('livewire.activity.index', ['activities' => $data->orderBy('id', 'desc')->paginate(10)]);
+        return view('livewire.activity.index', ['activities' => $data->orderBy('id', 'desc')->paginate(10), 'villages' => Village::all()]);
     }
 
     public function export() {

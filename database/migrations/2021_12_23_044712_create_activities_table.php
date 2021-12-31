@@ -17,14 +17,15 @@ class CreateActivitiesTable extends Migration
             $table->id();
             $table->string('name');
             $table->double('amount');
-            $table->string('village');
             $table->double('volume');
             $table->string('founding');
             $table->year('start');
             $table->text('attachment')->nullable();
             $table->unsignedBigInteger('activity_type_id');
+            $table->unsignedBigInteger('village_id');
 
             $table->foreign('activity_type_id')->references('id')->on('activity_types');
+            $table->foreign('village_id')->references('id')->on('villages');
             $table->timestamps();
             $table->softDeletes();
         });

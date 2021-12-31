@@ -9,7 +9,7 @@ class Activity extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'amount', 'village', 'activity_type_id', 'volume', 'founding', 'start', 'attachment'];
+    protected $fillable = ['name', 'amount', 'village_id', 'activity_type_id', 'volume', 'founding', 'start', 'attachment'];
 
     public function getActivityTypeColorAttribute() {
         return [
@@ -23,5 +23,10 @@ class Activity extends Model
     public function activity_type()
     {
         return $this->belongsTo(ActivityType::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
     }
 }

@@ -15,12 +15,14 @@
           wire:model="search"
           class="rounded border-2 border-gray-200 ring-0 px-4 py-2"
         />
-        <input
-          type="text"
-          placeholder="Desa"
-          wire:model="village"
-          class="rounded border-2 border-gray-200 ring-0 px-4 py-2"
-        />
+        <select wire:model="village"
+          class="appearance-none w-48 rounded border-2 border-gray-200 ring-0 px-4 py-2"
+        >
+          <option value="">Pilih Desa</option>
+          @foreach ($villages as $village)
+            <option value="{{$village->id}}">{{$village->name}}</option>
+          @endforeach
+        </select>
         <select wire:model="year"
           class="appearance-none w-48 rounded border-2 border-gray-200 ring-0 px-4 py-2"
         >
@@ -226,7 +228,7 @@
               </span>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
-              {{$activity->village}}
+              {{$activity->village->name}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
               <span class="text-sm text-gray-600">
