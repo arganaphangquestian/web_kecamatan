@@ -59,7 +59,7 @@
     let marker;
     map.on('click', function(e) {
       marker && map.removeLayer(marker);
-      marker = L.marker(e.latlng, {draggable:'true'});
+      marker = new L.marker(e.latlng, {draggable:'true'});
       onChangeLocation(e.latlng)
       marker.on('dragend', function(event){
         let mark = event.target;
@@ -75,7 +75,7 @@
     }).addTo(map);
 
     function onChangeLocation(latlng) {
-      document.querySelector("#activity_location").value = `${latlng.toString()}`
+      document.querySelector("#activity_location").value = `${latlng.lat};${latlng.lng}`
     }
 
   </script>

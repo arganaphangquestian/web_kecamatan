@@ -209,7 +209,7 @@
               {{$activity->name}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
-              {{$activity->amount}}
+              {{"Rp " . number_format($activity->amount,2,',','.')}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
               <span
