@@ -38,7 +38,8 @@ class Index extends Component
         if($this->village) {
             $data->where('village_id', '=', $this->village);
         }
-        return view('livewire.activity.index', ['activities' => $data->orderBy('id', 'desc')->paginate(10), 'villages' => Village::all()]);
+        $activities = $data->orderBy('id', 'desc')->paginate(10);
+        return view('livewire.activity.index', ['activities' => $activities, 'villages' => Village::all(), 'total_volume' => $activities->sum('volume')]);
     }
 
     public function export() {

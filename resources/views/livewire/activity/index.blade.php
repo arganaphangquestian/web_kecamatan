@@ -287,6 +287,11 @@
       </table>
     </div>
 
+    <!-- Show Total Colume -->
+    <div class="mt-10 px-4 py-2 bg-gray-200 rounded-md w-fit transition hover:bg-gray-300">
+      <h1 class="text-xl text-gray-700">Total Volume <span class="font-bold">{{$total_volume}}</span></h1>
+    </div>
+
     <!-- Pagination -->
     <div class="mt-10">
       {{$activities->links()}}
