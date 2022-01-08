@@ -21,6 +21,7 @@ class Create extends ModalComponent
         'activity.volume' => 'required|numeric',
         'activity.activity_type_id' => 'required|numeric',
         'activity.founding' => 'required',
+        'activity.location' => 'required',
         'activity.start' => 'required',
     ];
 
