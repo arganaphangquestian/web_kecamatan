@@ -1,4 +1,10 @@
 <div>
+  <style>
+    .swal2-image {
+      object-fit: contain !important;
+      padding: 32px;
+    }
+  </style>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       {{ __("Manajemen Pengadaan") }}
@@ -249,18 +255,23 @@
             </td>
 
             <td class="px-6 py-4 whitespace-nowrap">
-              <img
-                class="
-                  w-12
-                  h-12
-                  object-cover
-                  overflow-hidden
-                  shadow
-                  rounded-full
-                "
-                src="{{$activity->attachment ? asset('/storage/' . $activity->attachment) : 'https://ui-avatars.com/api/?name='.$activity->name.'&color=7F9CF5&background=EBF4FF'}}"
-                alt="Kegiatan {{$activity->name}}"
-              />
+              @php
+              $src = $activity->attachment ? URL::asset('/storage/' . $activity->attachment) : 'https://ui-avatars.com/api/?name='.$activity->name.'&color=7F9CF5&background=EBF4FF';
+              @endphp
+              <div onclick="preview('{{{$src}}}')">
+                <img
+                  class="
+                    w-12
+                    h-12
+                    object-cover
+                    overflow-hidden
+                    shadow
+                    rounded-full
+                  "
+                  src="{{$src}}"
+                  alt="Kegiatan {{$activity->name}}"
+                />
+              </div>
             </td>
             <td
               class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
@@ -297,4 +308,16 @@
       {{$activities->links()}}
     </div>
   </div>
+  <script>
+    function preview(src) {
+      Swal.fire({
+        showCloseButton: true,
+        showConfirmButton: false,
+        imageUrl: src,
+        imageWidth: 800,
+        imageHeight: 400,
+      });
+      // console.log(src)
+    }
+  </script>
 </div>

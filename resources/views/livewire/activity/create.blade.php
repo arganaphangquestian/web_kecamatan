@@ -52,7 +52,7 @@
     </x-slot>
   </x-modal>
   <script>
-    let map = L.map('createmap').setView([-6.1229985, 106.5413239], 13);
+    let map = L.map('createmap').setView([-6.1229985, 106.5413239], 7);
     let marker;
     map.on('click', function(e) {
       marker && map.removeLayer(marker);

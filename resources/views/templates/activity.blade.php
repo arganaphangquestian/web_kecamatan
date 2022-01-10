@@ -127,7 +127,7 @@
         </span>
       </td>
       <td class="px-6 py-4 whitespace-nowrap">
-        {{$activity->village}}
+        {{$activity->village->name}}
       </td>
       <td class="px-6 py-4 whitespace-nowrap">
         <span class="text-sm text-gray-600">
