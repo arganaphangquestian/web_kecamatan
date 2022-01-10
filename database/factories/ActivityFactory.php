@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use App\Models\ActivityType;
 use App\Models\Village;
 use Illuminate\Support\Collection;
+use Faker\Factory as Faker;
 
 class ActivityFactory extends Factory
 {
@@ -17,6 +18,7 @@ class ActivityFactory extends Factory
      */
     public function definition()
     {
+        $faker = Faker::create();
 
         return [
             'name' => $this->faker->unique()->company(),
@@ -28,13 +30,7 @@ class ActivityFactory extends Factory
                 return $item->id;
             })->toArray()),
             'volume' => Arr::random([12, 23, 34, 67, 133, 63, 69, 61, 56]),
-            'location' => Arr::random([
-                '-6.121780040558322;106.57751083374023',
-                '-6.11631817347278;106.5915870666504',
-                '-6.133898358679618;106.55982971191408',
-                '-6.133386322638398;106.56103134155275',
-                '-6.11853706370808;106.55639648437501',
-            ]),
+            'location' => $faker->latitude() . ';'. $faker->longitude(),
             'founding' => 'APBD 2022',
             'start' => 2021,
         ];
