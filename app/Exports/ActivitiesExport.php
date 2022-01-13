@@ -35,7 +35,9 @@ class ActivitiesExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        $data = Activity::with('village')->select('name', 'amount', 'village_id', 'volume', 'founding', 'start')->whereHas('activity_type', function($q) {
+        $data = Activity::join('villages', 'activities.village_id', '=', 'villages.id')
+        ->select('activities.name', 'activities.amount', 'villages.name as village_name', 'activities.volume', 'activities.founding', 'activities.start')
+        ->whereHas('activity_type', function($q) {
             if(!$this->type) return $q;
             return $q->where('slug', '=', $this->type);
         });
@@ -46,8 +48,8 @@ class ActivitiesExport implements FromCollection, WithHeadings
             $data->where('start', '=', $this->year);
         }
         if($this->village) {
-            $data->village->where('name', 'like', '%' . $this->village . '%');
+            $data->where('village_id', '=', $this->village);
         }
-        return $data->orderBy('id', 'asc')->get();
+        return $data->orderBy('activities.id', 'asc')->get();
     }
 }
