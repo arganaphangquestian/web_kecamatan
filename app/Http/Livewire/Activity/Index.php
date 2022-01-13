@@ -21,7 +21,7 @@ class Index extends Component
     public $village;
     public $type;
 
-    protected $queryString = ['type'];
+    protected $queryString = ['type', 'search', 'year', 'village'];
 
     public function render()
     {
@@ -38,7 +38,7 @@ class Index extends Component
         if($this->village) {
             $data->where('village_id', '=', $this->village);
         }
-        $activities = $data->orderBy('id', 'desc')->paginate(10);
+        $activities = $data->orderBy('id', 'desc')->paginate(10)->withQueryString();
         return view('livewire.activity.index', ['activities' => $activities, 'villages' => Village::all(), 'total_volume' => $activities->sum('volume')]);
     }
 

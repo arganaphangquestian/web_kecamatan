@@ -14,6 +14,6 @@ class ActivitySeeder extends Seeder
      */
     public function run()
     {
-        Activity::factory()->count(100)->create();
+        Activity::factory()->count(1000)->create();
     }
 }
