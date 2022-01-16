@@ -42,10 +42,6 @@
           @endif
           <input id="attachment" type="file" placeholder="attachment" class="hidden" wire:model="attachment"/>
         </label>
-        <label class="flex flex-col mb-4">
-          <input type="hidden" wire:model="activity.location" id="activity_location">
-          <div id="editmap" class="h-52"></div>
-        </label>
         <div class="flex flex-col gap-4">
           <button type="submit" class="px-4 py-2 rounded-md bg-green-200 hover:bg-green-300 text-green-800">Update</button>
           <button type="button" onclick="Livewire.emit('closeModal')" class="px-4 py-2 rounded-md bg-yellow-200 hover:bg-yellow-300 text-yellow-800">Cancel</button>
@@ -55,28 +51,4 @@
   </x-modal>
 
   <script>
-    let map = L.map('editmap').setView([-6.1229985, 106.5413239], 13);
-    let marker;
-    map.on('click', function(e) {
-      marker && map.removeLayer(marker);
-      marker = new L.marker(e.latlng, {draggable:'true'});
-      onChangeLocation(e.latlng)
-      marker.on('dragend', function(event){
-        let mark = event.target;
-        let position = mark.getLatLng();
-        marker.setLatLng(position,{draggable:'true'}).bindPopup(position).update();
-        onChangeLocation(position)
-      });
-      map.addLayer(marker);
-    });
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    function onChangeLocation(latlng) {
-      document.querySelector("#activity_location").value = `${latlng.lat};${latlng.lng}`
-    }
-
-  </script>
 </div>

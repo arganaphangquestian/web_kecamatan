@@ -6,6 +6,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/profile', function () {
+    return view('profile');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::get('/dashboard', App\Http\Livewire\Dashboard\Index::class)->name('dashboard');
     Route::get('/activity', App\Http\Livewire\Activity\Index::class)->name('activity');
