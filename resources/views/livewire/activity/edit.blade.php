@@ -49,6 +49,4 @@
       </form>
     </x-slot>
   </x-modal>
-
-  <script>
 </div>
