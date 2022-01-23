@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             VillageSeeder::class,
             ActivityTypeSeeder::class,
-            ActivitySeeder::class,
+            // ActivitySeeder::class,
             UserSeeder::class,
         ]);
     }
