@@ -34,9 +34,9 @@
         </label>
         <label class="w-full rounded-md border-2 border-dashed p-8 mb-4 flex flex-col justify-center items-center">
           @if($attachment)
-          <img src="{{$attachment->temporaryUrl()}}" alt="Aktifitas Pengadaan">
+          <img src="{{$attachment->temporaryUrl()}}" alt="Aktifitas Kegiatan">
           @else
-          <span class="text-gray-600 text-sm mb-1">Foto Pengadaan</span>
+          <span class="text-gray-600 text-sm mb-1">Foto Kegiatan</span>
           @endif
           <input id="attachment" type="file" placeholder="attachment" class="hidden" wire:model="attachment"/>
         </label>

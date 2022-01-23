@@ -117,7 +117,7 @@
                 tracking-wider
               "
             >
-              Total Kontrak
+              Nilai Kontrak
             </th>
             <th
               scope="col"
@@ -201,7 +201,7 @@
                 tracking-wider
               "
             >
-              Foto Pengadaan
+              Foto Kegiatan
             </th>
             <th scope="col" class="relative px-6 py-3">
               <span class="sr-only">Opsi</span>
@@ -238,7 +238,7 @@
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
               <span class="text-sm text-gray-600">
-                {{$activity->volume}}
+                {{$activity->volume}} m
               </span>
             </td>
 
@@ -300,7 +300,7 @@
 
     <!-- Show Total Colume -->
     <div class="mt-10 px-4 py-2 bg-gray-200 rounded-md w-fit transition hover:bg-gray-300">
-      <h1 class="text-xl text-gray-700">Total Volume <span class="font-bold">{{$total_volume}}</span></h1>
+      <h1 class="text-xl text-gray-700">Total Volume <span class="font-bold">{{$total_volume}} m</span></h1>
     </div>
 
     <!-- Pagination -->
