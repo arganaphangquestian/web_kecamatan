@@ -43,7 +43,7 @@ class Index extends Component
     }
 
     public function export() {
-        return Excel::download(new ActivitiesExport($this->type, $this->search, $this->year, $this->village), 'Activities-'.$this->type.'-'.date("Y-m-d H:i:s").'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+        return Excel::download(new ActivitiesExport($this->type, $this->search, $this->year, $this->village), 'Rekap Kegiatan '.$this->type.' '.date("Y-m-d H:i:s").'.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
 
 }
