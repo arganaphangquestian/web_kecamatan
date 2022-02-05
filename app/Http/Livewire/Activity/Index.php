@@ -10,6 +10,7 @@ use App\Models\ActivityType;
 use Illuminate\Support\Collection;
 use App\Exports\ActivitiesExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Index extends Component
 {
@@ -43,7 +44,22 @@ class Index extends Component
     }
 
     public function export() {
-        return Excel::download(new ActivitiesExport($this->type, $this->search, $this->year, $this->village), 'Rekap Kegiatan '.$this->type.' '.date("Y-m-d H:i:s").'.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        $data = Activity::whereHas('activity_type', function($q) {
+            if(!$this->type) return $q;
+            return $q->where('slug', '=', $this->type);
+        });
+        if($this->search) {
+            $data->where('name', 'like', '%' . $this->search . '%');
+        }
+        if($this->year) {
+            $data->where('start', '=', $this->year);
+        }
+        if($this->village) {
+            $data->where('village_id', '=', $this->village);
+        }
+        $activities = $data->orderBy('id', 'desc')->get();
+        $pdf = PDF::loadView('export.activity', ['activities' => $data->orderBy('activities.id', 'asc')->get(), 'description' => ActivityType::where('slug', '=', $this->type)->first()->name])->output();
+        return response()->streamDownload(fn () => print($pdf), 'Rekap Kegiatan '.$this->type.' '.date("Y-m-d H:i:s").'.pdf');
     }
 
 }
